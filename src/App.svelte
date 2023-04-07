@@ -2,14 +2,11 @@
   import { onMount } from 'svelte';
 	import Testimony from './components/Testimony.svelte';
 	
-	let data = [];
+	let testimonies = [];
 
 	onMount(async () => {
-		const res = await fetch('data.json')
+		testimonies = await fetch('data.json')
 			.then(res => res.json());
-
-		console.log(res);
-		data = res;
 	});
 </script>
 
@@ -18,7 +15,7 @@
     <h1 class='title-testimony'>
 			Here is what our alumni say about freeCodeCamp:
 		</h1>
-    {#each data as testimony}
+    {#each testimonies as testimony}
 			<Testimony {...testimony} />
 		{/each}
   </div>
